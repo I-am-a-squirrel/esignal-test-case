@@ -1,14 +1,20 @@
 #include "filesystem-info.h"
+#include <QThreadPool>
 //#include "ui_mainwindow.h"
 
-FileSystem::FileSystem(QWidget *parent)
-    : QFileSystemModel(parent)
-    , ui(new Ui::MainWindow)
+FileSystem::FileSystem(const QString currentPath)
+    : QFileSystemModel()
 {
-    ui->setupUi(this);
+    this->setRootPath(currentPath);
+    this->fsAnalysisThread.setMaxThreadCount(3);
+    this->percentStatsCount = 0;
+    this->percentTreeCount = 0;
 }
 
-MainWindow::~MainWindow()
+FileSystem::~FileSystem()
 {
-    delete ui;
+    fsAnalysisThread.clear();
 }
+ scanTree() {
+
+};

@@ -4,6 +4,7 @@
 #include <QApplication>
 #include <QLocale>
 #include <QTranslator>
+#include <QFileSystemModel>
 
 int main(int argc, char *argv[])
 {
@@ -19,8 +20,10 @@ int main(int argc, char *argv[])
         }
     }
 
-    FileSystem *direstory = new QFileSystemModel();
-
+    QFileSystemModel currentFS;
+    QString directory = currentFS.rootPath();
+    currentFS.~QFileSystemModel();
+    FileSystem interfaceFS = FileSystem(directory);
     MainWindow w;
     w.show();
     return a.exec();
