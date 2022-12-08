@@ -3,6 +3,7 @@
 
 #include <QFileSystemModel>
 #include <QThreadPool>
+//#include "mainwindow.h"
 
 class FileSystem : public QFileSystemModel {
     Q_OBJECT

@@ -2,6 +2,8 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <filesystem-info.h>
+#include <QFuture>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -12,11 +14,14 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    MainWindow(QWidget *parent = nullptr);
+    MainWindow(QWidget *parent, QString directory);
     ~MainWindow();
-    void FSTreeView();
 
 private:
+    void FSTreeView();
+    void indexFS();
     Ui::MainWindow *ui;
+    FileSystem* interfaceFSpointer = new FileSystem("");
+    QString directory;
 };
 #endif // MAINWINDOW_H
