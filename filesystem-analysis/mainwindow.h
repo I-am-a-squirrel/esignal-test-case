@@ -16,10 +16,10 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent, QString directory);
     ~MainWindow();
+    void indexFS();
 
 private:
     void FSTreeView();
-    void indexFS();
     Ui::MainWindow *ui;
     FileSystem* interfaceFSpointer = new FileSystem("");
     QString directory;

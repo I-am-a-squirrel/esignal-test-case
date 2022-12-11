@@ -18,11 +18,12 @@ MainWindow::~MainWindow()
     delete interfaceFSpointer;
 };
 
-void MainWindow::FSTreeView()
+void MainWindow::indexFS()
 {
-    QFuture<void> indexing = QtConcurrent::run(MainWindow::indexFS());
+    ui->filesystemTreeView->setModel(this->interfaceFSpointer);
 };
 
-void MainWindow::indexFS() {
-    ui->filesystemTreeView->setModel(this->interfaceFSpointer);
+void MainWindow::FSTreeView()
+{
+    QFuture<void> indexing = QtConcurrent::run(this, &indexFS(), true);
 };
