@@ -23,7 +23,6 @@ int main(int argc, char *argv[])
     QFileSystemModel currentFS;
     QString directory = currentFS.rootPath();
     currentFS.~QFileSystemModel();
-    //FileSystem interfaceFS = FileSystem(directory);
     MainWindow w(nullptr, directory);
     w.show();
     return a.exec();
