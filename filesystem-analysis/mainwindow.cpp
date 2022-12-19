@@ -11,6 +11,7 @@ MainWindow::MainWindow(QWidget *parent, QString directory)
     ui->setupUi(this);
     interfaceFSpointer = new FileSystem(this->directory);
     FSTreeView();
+    QObject::connect(ui->filesystemTreeView, &QAbstractItemView::clicked, this, &MainWindow::directoryChosen);
 }
 
 MainWindow::~MainWindow()
@@ -26,11 +27,22 @@ void MainWindow::indexFS()
 
 void MainWindow::FSTreeView()
 {
-    QFuture<void> indexing = QtConcurrent::run(std::function<void()>( [this]() {
+    QFuture<void> indexing = QtConcurrent::run(std::function<void()>([this]() {
         indexFS();
     } )).then([this](){
         ui->fileTreeProgressBar->valueChanged(100);
     });
 };
 
-void MainWindow::
+void MainWindow::directoryChosen()
+{
+    int finishedProcessesCount = 0;
+    QFuture<void> fileCount = QtConcurrent::run(std::function<void()>([this]() {
+
+    })).then([this, &finishedProcessesCount](){
+        finishedProcessesCount++;
+        ui->statsProgressBar->valueChanged(20 * finishedProcessesCount);
+    });
+
+    ui->filesystemTreeView;
+};

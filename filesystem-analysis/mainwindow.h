@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <filesystem-info.h>
 #include <QFuture>
+#include <QAbstractItemView>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -17,6 +18,9 @@ public:
     MainWindow(QWidget *parent, QString directory);
     ~MainWindow();
     void indexFS();
+
+public slots:
+    void directoryChosen();
 
 private:
     void FSTreeView();
